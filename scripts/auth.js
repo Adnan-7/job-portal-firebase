@@ -41,3 +41,28 @@ const login = async (e) => {
   password.value = '';
   M.Modal.getInstance(myModal[1]).close();
 };
+
+//logout
+
+const logout = () => {
+  firebase.auth().signOut();
+};
+
+const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    console.log(user);
+  } else {
+    console.log('Signout success');
+    M.toast({ html: 'SignOut Success', classes: 'green' });
+  }
+});
+
+const loginWithGoogle = async () => {
+  try {
+    let provider = new firebase.auth.GoogleAuthProvider();
+    const result = await firebase.auth().signInWithPopup(provider);
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  }
+};
