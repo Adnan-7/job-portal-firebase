@@ -51,7 +51,7 @@
     <div id="modal2" class="modal">
       <div class="modal-content">
         <h4>Login</h4>
-        <form autocomplete="off"  ">
+        <form autocomplete="off" onsubmit="login(event)">
           <input type="email" id="loginEmail" placeholder="email" />
           <input type="password" id="loginPassword" placeholder="password" />
           <button
@@ -79,11 +79,7 @@
             <input class="file-path validate" type="text" />
           </div>
         </div>
-        <form
-          autocomplete="off"
-          id="editProfile"
-           
-        >
+        <form autocomplete="off" id="editProfile">
           <input type="email" name="profileEmail" placeholder="email" />
           <input type="text" name="name" placeholder="name" />
           <input type="text" name="phoneno" placeholder="phoneno" />
