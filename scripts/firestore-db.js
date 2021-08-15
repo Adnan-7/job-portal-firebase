@@ -1,3 +1,6 @@
+const userInfoDetails = document.querySelector('.userDetails')
+
+
 function createUsersCollection(user){
     firebase.firestore().collection('users').doc(user.uid)
     .set({
@@ -10,4 +13,24 @@ function createUsersCollection(user){
       portfolioUrl:''
 
     })
+}
+
+
+async function getUserInfo(userID){
+  if(userID){
+  const userInfoSnap = await firebase.firestore().collection('users').doc(userID)
+  .get()
+
+  const userInfo= userInfoSnap.data()
+if(userInfo){
+   userInfoDetails.innerHTML=`
+   <h3>${userInfo.name}</h3>
+   <h3>${userInfo.email}</h3>
+   <h3>${userInfo.phone}</h3>
+   `
+  }}else{
+    userInfoDetails.innerHTML=`
+   <h3>Please Login</h3>`
+  }
+
 }
