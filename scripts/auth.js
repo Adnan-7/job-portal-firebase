@@ -13,10 +13,12 @@ const signup = async (e) => {
       .createUserWithEmailAndPassword(email.value, password.value);
 
      await result.user.updateProfile({
-        displayName: "user1", 
+        displayName: "user", 
       })
 
-     await firebase.auth().currentUser.sendEmailVerification()
+      createUsersCollection(result.user)
+
+    //  await firebase.auth().currentUser.sendEmailVerification()
 
     M.toast({ html: `Welcom ${result.user.email}`, classes: 'green' });
     console.log(result);
