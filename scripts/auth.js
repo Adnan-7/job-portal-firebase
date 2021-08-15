@@ -11,6 +11,13 @@ const signup = async (e) => {
     const result = await firebase
       .auth()
       .createUserWithEmailAndPassword(email.value, password.value);
+
+     await result.user.updateProfile({
+        displayName: "user1", 
+      })
+
+     await firebase.auth().currentUser.sendEmailVerification()
+
     M.toast({ html: `Welcom ${result.user.email}`, classes: 'green' });
     console.log(result);
   } catch (err) {
