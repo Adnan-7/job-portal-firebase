@@ -21,7 +21,7 @@ const signup = async (e) => {
     //  await firebase.auth().currentUser.sendEmailVerification()
 
     M.toast({ html: `Welcom ${result.user.email}`, classes: 'green' });
-    console.log(result);
+    console.log(result)
   } catch (err) {
     M.toast({ html: err.message, classes: 'red' });
   }

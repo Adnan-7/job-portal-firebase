@@ -34,21 +34,14 @@
         <form autocomplete="off" onsubmit="signup(event)">
           <input type="email" id="signupEmail" placeholder="email" />
           <input type="password" id="signupPassword" placeholder="password" />
-          <button
-            class="btn waves-effect #fbc02d yellow darken-2"
-            type="submit"
-          >
-            submit
-          </button>
+          <button class="btn waves-effect #fbc02d yellow darken-2" type="submit"> submit </button>
         </form>
-        <button class="btn waves-effect blue" onclick="loginWithGoogle()">
-          Login with google
-        </button>
+        <button class="btn waves-effect blue" onclick="loginWithGoogle()"> Login with google
+</button>
       </div>
     </div>
 
-    <!--login Modal -->
-    <div id="modal2" class="modal">
+    <!--login Modal -->    <div id="modal2" class="modal">
       <div class="modal-content">
         <h4>Login</h4>
         <form autocomplete="off" onsubmit="login(event)">
@@ -79,20 +72,15 @@
             <input class="file-path validate" type="text" />
           </div>
         </div>
-        <form autocomplete="off" id="editProfile">
+        <form autocomplete="off" id="editProfile" onsubmit='updateUserProfile(event)'>
           <input type="email" name="profileEmail" placeholder="email" />
           <input type="text" name="name" placeholder="name" />
-          <input type="text" name="phoneno" placeholder="phoneno" />
+          <input type="text" name="phoneno" placeholder="phone" />
           <input type="text" name="specialty" placeholder="speciality" />
           <input type="text" name="prorfolioUrl" placeholder="protfolio url" />
           <input type="text" name="experience" placeholder="experience" />
 
-          <button
-            class="btn waves-effect #fbc02d yellow darken-2"
-            type="submit"
-          >
-            submit
-          </button>
+          <button class="btn waves-effect #fbc02d yellow darken-2"type="submit" > submit</button>
         </form>
       </div>
     </div>
