@@ -60,6 +60,10 @@ async function getUserInfoRealTime(userID){
           editProfile['specialty'].value=userInfo.specilaty
           editProfile['prorfolioUrl'].value=userInfo.portfolioUrl
            editProfile['experience'].value=userInfo.experience
+
+           if( firebase.auth().currentUser.photoURL){
+             document.querySelector('#proimg').src= firebase.auth().currentUser.photoURL
+           }
       
         }
       }
@@ -88,4 +92,42 @@ function updateUserProfile(e){
   })
   M.Modal.getInstance(myModal[2]).close();
 
+}
+
+
+function uploadImage(e){
+
+  const uid= firebase.auth().currentUser.uid
+  const fileRef= firebase.storage().ref().child(`/users/${uid}/profile`)
+  var uploadTask =  fileRef.put(e.target.files[0])
+
+// Register three observers:
+// 1. 'state_changed' observer, called any time the state changes
+// 2. Error observer, called on failure
+// 3. Completion observer, called on successful completion
+uploadTask.on('state_changed', 
+  (snapshot) => {
+    // Observe state change events such as progress, pause, and resume
+    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    if(progress =='100'){
+       alert('Uploaded')
+    }
+  }, 
+  (error) => {
+    // Handle unsuccessful upload
+    console.log(error);
+  }, 
+  () => {
+    // Handle successful uploads on complete
+    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+      console.log('File available at', downloadURL);
+
+      firebase.auth().currentUser.updateProfile({
+        photoURL: downloadURL 
+      })
+    });
+  }
+);
 }
